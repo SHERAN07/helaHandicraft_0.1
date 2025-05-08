@@ -327,8 +327,7 @@
                                 ?>
 
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Email" value="<?php
-                                                                                                        echo $email; ?>" id="signInEmail">
+                                    <input type="email" class="form-control" placeholder="Email" value="<?php echo $email; ?>" id="signInEmail">
                                 </div>
                                 <div class="input-group mb-3">
 
@@ -439,5 +438,39 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
+<!-- Vertically centered modal -->
+<div class="modal fade" id="fpmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="fpmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="fpmodalLabel">Forget password</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">New Password:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Re enter New Password:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Verification Code</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Reset your password</button>
+        </div>
+      </div>
+    </div>
+  </div>

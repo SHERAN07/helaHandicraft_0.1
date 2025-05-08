@@ -123,7 +123,7 @@ function signIn() {
 var bm;
 function forgotPassword() {
 
-    var email = document.getElementById("email2");
+    var email = document.getElementById("signInEmail");
 
     var r = new XMLHttpRequest();
 
@@ -131,20 +131,32 @@ function forgotPassword() {
         if (r.readyState == 4 && r.status == 200) {
             var t = r.responseText;
             if (t == "success") {
-
-                alert("Verification code has sent to your Email. Please check your inbox");
-                var m = document.getElementById("forgotPasswordModal");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'success!',
+                    text: 'Verification code has sent to your Email. Please check your inbox',
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+                // alert("Verification code has sent to your Email. Please check your inbox");
+                var m = document.getElementById("fpmodal");
                 bm = new bootstrap.Modal(m);
                 bm.show();
 
             } else {
-                alert(t);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
             }
 
         }
     }
 
-    r.open("GET", "../auth/forgotPasswordProcess.php?e=" + email.value, true);
+    r.open("GET", "./authentication/forgotPasswordProcess.php?e=" + email.value, true);
     r.send();
 
 }

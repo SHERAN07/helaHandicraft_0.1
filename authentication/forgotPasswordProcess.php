@@ -1,10 +1,10 @@
 <?php
 
-require "connection.php";
+require "../Database/connection.php";
 
-require "SMTP.php";
-require "PHPMailer.php";
-require "Exception.php";
+require "../phplib/SMTP.php";
+require "../phplib/PHPMailer.php";
+require "../phplib/Exception.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -44,7 +44,7 @@ if(isset($_GET["e"])){
             }
 
     }else{
-        echo ("Invalid Email Address.");
+        echo ("Invalid Email Address. Enter a valid Email Address.");
     }
 
 }else{
