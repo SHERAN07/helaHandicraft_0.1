@@ -346,8 +346,10 @@
 
                                     <div class="text-center mb-3 w-full ">
 
-                                        <a href="#" onclick="forgotPassword();" class="forgot-password">Forgot Password?</a>
-
+                                        <a href="#" onclick="forgotPassword();" id="fp" class="forgot-password">Forgot Password?</a>
+                                        <div class="spinner-border text-primary d-none" id="sp" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100" onclick="signIn();">Login</button>
@@ -446,31 +448,31 @@
 <div class="modal fade" id="fpmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="fpmodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="fpmodalLabel">Forget password</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">New Password:</label>
-              <input type="text" class="form-control" id="recipient-name">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="fpmodalLabel">Forget password</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Re enter New Password:</label>
-              <input type="text" class="form-control" id="recipient-name">
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">New Password:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Re enter New Password:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Verification Code</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Verification Code</label>
-              <input type="text" class="form-control" id="recipient-name">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Reset your password</button>
             </div>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Reset your password</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>

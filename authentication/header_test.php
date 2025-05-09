@@ -88,7 +88,7 @@
 
                                 <ul class="dropdown-menu">
 
-                                    <li><a class="dropdown-item mt-1" href="userPublicProfile.php"><i
+                                    <li><a class="dropdown-item mt-1" href="../userPublicProfile.php"><i
                                                 class="fa-regular fa-user fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;My
                                             Profile</a></li>
                                     <hr>

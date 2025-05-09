@@ -123,6 +123,12 @@ function signIn() {
 var bm;
 function forgotPassword() {
 
+    var fp = document.getElementById("fp");
+    var sp = document.getElementById("sp");
+
+    sp.classList.remove("d-none");
+    fp.classList.add("d-none");
+
     var email = document.getElementById("signInEmail");
 
     var r = new XMLHttpRequest();
@@ -131,6 +137,8 @@ function forgotPassword() {
         if (r.readyState == 4 && r.status == 200) {
             var t = r.responseText;
             if (t == "success") {
+                fp.classList.remove("d-none");
+                sp.classList.add("d-none");
                 Swal.fire({
                     icon: 'success',
                     title: 'success!',

@@ -67,11 +67,11 @@
 
                         <ul class="dropdown-menu">
 
-                            <li><a class="dropdown-item mt-1" href="userPublicProfile.php"><i
+                            <li><a class="dropdown-item mt-1" href="../components/userPublicProfile.php"><i
                                         class="fa-regular fa-user fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;My
                                     Profile</a></li>
                             <hr>
-                            <li><a class="dropdown-item" href="../auth/auth.php"><i
+                            <li><a class="dropdown-item" href="#"><i
                                         class="fa-solid fa-house fa-flip fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
                             </li>
                             <li><a class="dropdown-item" href="#"><i
