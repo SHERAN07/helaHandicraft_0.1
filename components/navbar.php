@@ -47,7 +47,7 @@
 
                     <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item mt-1" href="userPublicProfile.php"><i
+                        <li><a class="dropdown-item mt-1" href="./components/userPublicProfile.php"><i
                                     class="fa-regular fa-user fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;My
                                 Profile</a></li>
                         <hr>
@@ -333,7 +333,7 @@
 
                                     <input type="password" class="form-control" placeholder="Password" id="signInPassword" value="<?php echo $password; ?>">
                                     <button class="input-group-text input-box" id="passicon" onclick="showpasswordicon();">
-                                        <i class="fa-solid fa-eye"></i>
+                                        <i class="fa-solid fa-eye-slash"></i>
                                     </button>
 
                                 </div>
@@ -423,7 +423,12 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="pw1" placeholder="Password" required>
+                                        <button class="input-group-text input-box" id="passicon4" onclick="showpasswordicon4();">
+                                            <i class="fa-solid fa-eye-slash"></i>
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <button onclick="signUp();" class="btn btn-primary w-100">Create Account</button>
@@ -455,23 +460,36 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="mb-3">
+                    <div id="fga" class="d-none">
+                        <p class="alert alert-secondary" id="fgat"></p>
+                    </div>
+                    <div class="mb-3 input-group">
                         <label for="recipient-name" class="col-form-label">New Password:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="np">
+                            <button class="input-group-text input-box" id="passicon2" onclick="showpasswordicon2();">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Re enter New Password:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="rnp">
+                            <button class="input-group-text input-box" id="passicon3" onclick="showpasswordicon3();">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Verification Code</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" class="form-control" id="vc">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Reset your password</button>
+                <button type="button" class="btn btn-primary" onclick="resetPassword();">Reset your password</button>
             </div>
         </div>
     </div>

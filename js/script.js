@@ -139,13 +139,10 @@ function forgotPassword() {
             if (t == "success") {
                 fp.classList.remove("d-none");
                 sp.classList.add("d-none");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'success!',
-                    text: 'Verification code has sent to your Email. Please check your inbox',
-                    confirmButtonText: 'Okey',
-                    confirmButtonColor: "#000000",
-                });
+                var fga = document.getElementById("fga");
+                var fgat = document.getElementById("fgat");
+                fga.classList.remove("d-none");
+                fgat.innerHTML = "Verification code has sent to your Email. Please check your inbox";
                 // alert("Verification code has sent to your Email. Please check your inbox");
                 var m = document.getElementById("fpmodal");
                 bm = new bootstrap.Modal(m);
@@ -159,6 +156,8 @@ function forgotPassword() {
                     confirmButtonText: 'Okey',
                     confirmButtonColor: "#000000",
                 });
+                fp.classList.remove("d-none");
+                sp.classList.add("d-none");
             }
 
         }
@@ -175,106 +174,89 @@ function showpasswordicon() {
 
     if (textfiled.type == "password") {
         textfiled.type = "text";
-        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
     } else {
         textfiled.type = "password";
-        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
     }
 }
 
 function showpasswordicon2() {
-    var textfiled = document.getElementById("password");
+    var textfiled = document.getElementById("np");
     var butn_icon = document.getElementById("passicon2");
 
     if (textfiled.type == "password") {
         textfiled.type = "text";
-        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
     } else {
         textfiled.type = "password";
-        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
     }
 }
 
 function showpasswordicon3() {
-    var textfiled = document.getElementById("password3");
+    var textfiled = document.getElementById("rnp");
     var butn_icon = document.getElementById("passicon3");
 
     if (textfiled.type == "password") {
         textfiled.type = "text";
-        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
     } else {
         textfiled.type = "password";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    }
+}
+
+function showpasswordicon4() {
+    var textfiled = document.getElementById("pw1");
+    var butn_icon = document.getElementById("passicon4");
+
+    if (textfiled.type == "password") {
+        textfiled.type = "text";
         butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
-    }
-}
-
-function showPassword() {
-
-    var np = document.getElementById("np");
-    var npb = document.getElementById("npb");
-
-    if (np.type == "password") {
-
-        np.type = "text";
-        npb.innerHTML = "Hide";
-
     } else {
-
-        np.type = "password";
-        npb.innerHTML = "Show";
-
+        textfiled.type = "password";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
     }
-
-}
-
-function showPassword2() {
-
-    var rnp = document.getElementById("rnp");
-    var rnpb = document.getElementById("rnpb");
-
-    if (rnp.type == "password") {
-
-        rnp.type = "text";
-        rnpb.innerHTML = "Hide";
-
-    } else {
-
-        rnp.type = "password";
-        rnpb.innerHTML = "Show";
-
-    }
-
 }
 
 function resetPassword() {
 
-    var email = document.getElementById("email2");
     var np = document.getElementById("np");
     var rnp = document.getElementById("rnp");
     var vcode = document.getElementById("vc");
+    var email = document.getElementById("signInEmail");
 
     var f = new FormData();
+    f.append("np", np.value);
+    f.append("rnp", rnp.value);
+    f.append("vc", vcode.value);
     f.append("e", email.value);
-    f.append("n", np.value);
-    f.append("r", rnp.value);
-    f.append("v", vcode.value);
-
     var r = new XMLHttpRequest();
-
-    r.onreadystatechange = function () {
-        if (r.readyState == 4) {
+    r.onreadystatechange  = function () {
+        if (r.readyState ==  4 && r.status == 200) {
             var t = r.responseText;
-
             if (t == "success") {
-                alert("Your Password Updated");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'successfully!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
                 bm.hide();
             } else {
-                alert(t);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
             }
         }
-    };
-
-    r.open("POST", "auth/resetPasswordProcess.php", true);
+    }
+    r.open("POST", "./authentication/resetPasswordProcess.php", true);
     r.send(f);
 
 }
