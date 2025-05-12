@@ -79,7 +79,7 @@ function getCookie(name) {
     }
     return null; // Return null if cookie not found
 }
-
+// user signIn
 function signIn() {
 
     var email = document.getElementById("signInEmail");
@@ -119,6 +119,7 @@ function signIn() {
     r.send(f);
 
 }
+// user signIn
 
 var bm;
 function forgotPassword() {
@@ -220,6 +221,19 @@ function showpasswordicon4() {
     }
 }
 
+function showpasswordicon5() {
+    var textfiled = document.getElementById("adminPassword");
+    var butn_icon = document.getElementById("passicon5");
+
+    if (textfiled.type == "password") {
+        textfiled.type = "text";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    } else {
+        textfiled.type = "password";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    }
+}
+
 function resetPassword() {
 
     var np = document.getElementById("np");
@@ -233,8 +247,8 @@ function resetPassword() {
     f.append("vc", vcode.value);
     f.append("e", email.value);
     var r = new XMLHttpRequest();
-    r.onreadystatechange  = function () {
-        if (r.readyState ==  4 && r.status == 200) {
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
             var t = r.responseText;
             if (t == "success") {
                 Swal.fire({
@@ -325,4 +339,157 @@ function loadCity() {
 
     r.open("POST", "loadCityProcess.php", true);
     r.send(f);
+}
+
+function adminSignIn() {
+
+    var email = document.getElementById("adminEmail");
+    var password = document.getElementById("adminPassword");
+    var rememberme = document.getElementById("adminRememberme");
+    var otpv = document.getElementById("otpv");
+    var otpvsp = document.getElementById("otpvsp");
+
+    otpv.classList.add("d-none");
+    otpvsp.classList.remove("d-none");
+
+
+    var f = new FormData();
+    f.append("e", email.value);
+    f.append("p", password.value);
+    f.append("r", rememberme.checked);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4) {
+            if (r.status == 200) {
+                var t = r.responseText;
+                if (t == "success") {
+                    alert("success");
+                    //window.location = "./index.php";
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'warning!',
+                        text: t,
+                        confirmButtonText: 'Okey',
+                        confirmButtonColor: "#000000",
+                    });
+                }
+            } else {
+                alert("Error: " + r.statusText);
+            }
+
+        }
+    }
+
+    r.open("POST", "adminSignInProcess.php", true);
+    r.send(f);
+
+}
+
+function showpasswordicon6() {
+    var textfiled = document.getElementById("anp");
+    var butn_icon = document.getElementById("passicon6");
+
+    if (textfiled.type == "password") {
+        textfiled.type = "text";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    } else {
+        textfiled.type = "password";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    }
+}
+
+function showpasswordicon7() {
+    var textfiled = document.getElementById("arnp");
+    var butn_icon = document.getElementById("passicon7");
+
+    if (textfiled.type == "password") {
+        textfiled.type = "text";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    } else {
+        textfiled.type = "password";
+        butn_icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    }
+}
+
+function adminForgotPassword() {
+
+    // create variable
+    var fp = document.getElementById("adminfp");
+    var sp = document.getElementById("adminsp");
+
+    //set animation
+    sp.classList.remove("d-none");
+    fp.classList.add("d-none");
+
+    // get Element
+    var email = document.getElementById("adminEmail");
+
+    // request XMLHttpRequest
+    var r = new XMLHttpRequest();
+
+    // request onreadystatechange
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                fp.classList.remove("d-none");
+                sp.classList.add("d-none");
+                var afga = document.getElementById("adminfga");
+                var afgat = document.getElementById("adminfgat");
+                afga.classList.remove("d-none");
+                afgat.innerHTML = "Verification code has sent to your Email. Please check your inbox";
+                // alert("Verification code has sent to your Email. Please check your inbox");
+                var m = document.getElementById("adminfpmodal");
+                bm = new bootstrap.Modal(m);
+                bm.show();
+
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+                fp.classList.remove("d-none");
+                sp.classList.add("d-none");
+            }
+
+        }
+    }
+
+    r.open("GET", "adminForgotPasswordProcess.php?e=" + email.value, true);
+    r.send();
+}
+
+function adminResetPassword() {
+
+    var np = document.getElementById("anp");
+    var rnp = document.getElementById("arnp");
+    var vc = document.getElementById("avc");
+
+    var f = new FormData();
+    f.append("np", np.value);
+    f.append("rnp", rnp.value);
+    f.append("vc", vc.value);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                alert(t);
+            } else {
+                alert(t);
+            }
+        }
+    }
+
+    r.open("POST", "adminResetPasswordProcess.php", true);
+    r.send(f);
+
 }
