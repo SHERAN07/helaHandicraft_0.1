@@ -346,11 +346,7 @@ function adminSignIn() {
     var email = document.getElementById("adminEmail");
     var password = document.getElementById("adminPassword");
     var rememberme = document.getElementById("adminRememberme");
-    var otpv = document.getElementById("otpv");
-    var otpvsp = document.getElementById("otpvsp");
 
-    otpv.classList.add("d-none");
-    otpvsp.classList.remove("d-none");
 
 
     var f = new FormData();
@@ -366,7 +362,7 @@ function adminSignIn() {
                 var t = r.responseText;
                 if (t == "success") {
                     alert("success");
-                    //window.location = "./index.php";
+                    window.location = "./../dashboard/index.php";
                 } else {
                     Swal.fire({
                         icon: 'warning',
@@ -492,4 +488,138 @@ function adminResetPassword() {
     r.open("POST", "adminResetPasswordProcess.php", true);
     r.send(f);
 
+}
+
+function updateInfo() {
+
+    // alert ("Hari");
+
+    var fn = document.getElementById("fn");
+    var ln = document.getElementById("ln");
+
+    var f = new FormData();
+    f.append("fn", fn.value);
+    f.append("ln", ln.value);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                // window.location.reload();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'success!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    }
+
+    r.open("POST", "adminInfoUpdateProcess.php", true);
+    r.send(f);
+
+}
+
+function cPassword() {
+
+    var cp = document.getElementById("currentPassword");
+    var nepw = document.getElementById("newPassword");
+    var cnepw = document.getElementById("confirmPassword");
+
+    var f = new FormData();
+    f.append("currentPassword", cp.value);
+    f.append("newPassword", nepw.value);
+    f.append("confirmPassword", cnepw.value);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                cp.value = "";
+                nepw.value = "";
+                cnepw.value = "";
+                Swal.fire({
+                    icon: 'success',
+                    title: 'success!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    }
+
+    r.open("POST", "adminChangePasswordProcess.php", true);
+    r.send(f);
+}
+
+function updateAdminImage() {
+    var imageInput = document.getElementById("imageuploader");
+
+    imageInput.onchange = function () {
+        var files = imageInput.files;
+        var fileCount = files.length;
+
+        // Check if exactly 1 image is uploaded
+        if (fileCount === 1) {
+            var selectedFile = files[0];
+            var allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+
+            // Validate file type
+            if (!allowedTypes.includes(selectedFile.type)) {
+                alert('❌ Invalid file type. Please upload a JPEG, JPG, or PNG image.');
+                imageInput.value = ''; // Clear file input
+                return;
+            }
+
+            // Prepare to upload
+            var formData = new FormData();
+            formData.append("img0", selectedFile);
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    if (response === "success") {
+                        alert("✅ Image uploaded successfully.");
+                        window.location.reload();
+                    } else {
+                        alert("⚠ Server response: " + response);
+                    }
+                }
+            };
+
+            xhr.open("POST", "adminProfileUpdateProcess.php", true);
+            xhr.send(formData);
+
+        } else if (fileCount < 1) {
+            alert("⚠ You must select an image to upload.");
+        } else {
+            alert("⚠ Only 1 image is allowed. You selected " + fileCount + " files.");
+            imageInput.value = ''; // Clear file input
+        }
+    };
 }

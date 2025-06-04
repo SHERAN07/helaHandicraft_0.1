@@ -1,6 +1,9 @@
 <?php
-require "../../Database/connection.php";
+
 session_start();
+
+require "../../Database/connection.php";
+
 
 $email = $_POST["e"];
 $password = $_POST["p"];
@@ -27,13 +30,15 @@ if (empty($email)) {
         $_SESSION["ad"] = $d;
 
         if ($rememberme == "true") {
-            setcookie("adminemail", $email, time() + (60 * 60 * 24 * 360));
+            setcookie("email", $email, time() + (60 * 60 * 24 * 360), "/");
+            setcookie("password", $password, time() + (60 * 60 * 24 * 360), "/");
         } else {
-            setcookie("adminemail", "", -1);
+
+            setcookie("email", "", -1, "/");
+            setcookie("password", "", -1, "/");
         }
         echo ("success");
     } else {
         echo ("Invalid Username or Password");
     }
 }
-?>

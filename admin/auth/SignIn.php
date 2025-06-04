@@ -68,11 +68,7 @@
                                         </div>
                                     </div>
                                 </div> 
-                                <button type="submit" class="btn btn-danger w-100" style="background-color: #FF5B40;" id="otpv" onclick="adminSignIn();">OTP Verification
-                                </button>
-                                <button class="btn btn-danger d-none w-100" style="background-color: #FF5B40;" id="otpvsp" type="button" disabled>
-                                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                                    <span role="status">Loading...</span>
+                                <button type="submit" class="btn btn-danger w-100" style="background-color: #FF5B40;" id="otpv" onclick="adminSignIn();">Sign In
                                 </button>
 
                             </div>

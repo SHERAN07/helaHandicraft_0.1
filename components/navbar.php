@@ -80,7 +80,7 @@
                                     class="fa-solid fa-shop fa-beat fs-5"></i></i>&nbsp;&nbsp;&nbsp;&nbsp;Sell
                                 on Hela Handicrafts</a></li>
                         <hr>
-                        <li><a class="dropdown-item" href="userProfileSettings.php"><i
+                        <li><a class="dropdown-item" href="./components/userPublicSettings.php"><i
                                     class="fa-solid fa-gear fa-spin fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;Account
                                 Settings</a></li>
                         <li>

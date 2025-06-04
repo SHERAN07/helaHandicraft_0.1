@@ -1,3 +1,7 @@
 <?php
-echo "success";
+
+require "../../Database/connection.php";
+
+
+
 ?>
