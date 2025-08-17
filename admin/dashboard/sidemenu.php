@@ -19,7 +19,7 @@
                 </li>
 
                 <li>
-                    <a href="products.php" class="nav-link link-body-emphasis">
+                    <a href="addProducts.php" class="nav-link link-body-emphasis">
                         <i class="bi bi-box-seam-fill"></i> &nbsp; Products
                     </a>
                 </li>
@@ -64,7 +64,7 @@
         
         <div>
             <hr>
-            <a href="logout.php" class="btn btn-danger w-100">LOGOUT</a>
+            <a href="" class="btn btn-danger w-100" onclick="adminLogout();">LOGOUT</a>
             <hr>
         </div>
     </div>

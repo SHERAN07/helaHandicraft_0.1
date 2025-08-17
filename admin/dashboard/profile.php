@@ -36,16 +36,16 @@ if (isset($_SESSION["ad"])) {
 
                 </div>
                 <div class="col-md-10">
-                    <h2 class="mt-4 fw-bold text-center mb-3">Admin Profile</h2>
-
+                    <h2 class="mt-3 fw-bold text-center mb-3">Admin Profile</h2>
+                    <hr>
                     <div class="container-fluid">
                         <div class="row">
                             <!-- Profile Image -->
                             <div class="col-md-4 text-center mb-4">
-                                <?php 
+                                <?php
 
-                                $rs = Database::search("SELECT * FROM `adminprofile` WHERE `admin_email` = '".$session["email"]."'");
-                                
+                                $rs = Database::search("SELECT * FROM `adminprofile` WHERE `admin_email` = '" . $session["email"] . "'");
+
                                 $path = "../../resources/adminProfile/profile-img.jpg";
 
                                 if ($rs->num_rows > 0) {

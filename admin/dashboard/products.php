@@ -25,6 +25,7 @@
             </div>
             <div class="col-md-10">
                 <h3 class="mt-4 fw-bold">Products Dashboard</h3>
+                <hr>
                 
                 <!-- Add your dashboard content here -->
             </div>

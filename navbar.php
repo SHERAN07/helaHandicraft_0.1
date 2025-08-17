@@ -23,7 +23,7 @@
         </div>
 
         <?php
-
+        require "Database/connection.php";
         if (isset($_SESSION["u"])) {
         ?>
 
@@ -47,23 +47,23 @@
 
                     <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item mt-1" href="./components/userPublicProfile.php"><i
+                        <li><a class="dropdown-item mt-1" href="userProfile.php"><i
                                     class="fa-regular fa-user fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;My
                                 Profile</a></li>
                         <hr>
-                        <li><a class="dropdown-item" href="../auth/auth.php"><i
+                        <li><a class="dropdown-item" href="http://localhost/helaHandicraft_0.1/index.php"><i
                                     class="fa-solid fa-house fa-flip fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
                         </li>
-                        <li><a class="dropdown-item" href="#"><i
+                        <li><a class="dropdown-item" href="userCart.php"><i
                                     class="fa-solid fa-cart-shopping fa-beat-fade fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;Cart</a>
                         </li>
-                        <li><a class="dropdown-item" href="addProduct.php"><i
+                        <li><a class="dropdown-item" href="#"><i
                                     class="fa-solid fa-list-check fa-bounce fs-5"></i></i>&nbsp;&nbsp;&nbsp;&nbsp;Purchased
                                 History</a></li>
                         <li><a class="dropdown-item" href="#"><i
                                     class="fa-regular fa-star fa-flip fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                 </>My Reviews</a></li>
-                        <li><a class="dropdown-item" href="myProducts.php"><i
+                        <li><a class="dropdown-item" href="#"><i
                                     class="fa-solid fa-heart fa-beat fs-5"></i></i>&nbsp;&nbsp;&nbsp;&nbsp;Watchlist</a>
                         </li>
                         <hr>
@@ -80,7 +80,7 @@
                                     class="fa-solid fa-shop fa-beat fs-5"></i></i>&nbsp;&nbsp;&nbsp;&nbsp;Sell
                                 on Hela Handicrafts</a></li>
                         <hr>
-                        <li><a class="dropdown-item" href="./components/userPublicSettings.php"><i
+                        <li><a class="dropdown-item" href="userProfileSettings.php"><i
                                     class="fa-solid fa-gear fa-spin fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;Account
                                 Settings</a></li>
                         <li>
@@ -118,9 +118,9 @@
 
         <div class="d-block ">
 
-            <button class="button2 rounded-pill" type="button">
+            <button class="button2 rounded-pill" type="button" onclick="window.location='userCart.php'";>
 
-                <i class="fa-solid fa-cart-shopping fs-4" style="cursor: pointer;"></i>
+                <i class="fa-solid fa-cart-shopping fs-4" style="cursor: pointer;"><a href="userCart.php"></a></i>
 
             </button>
 
@@ -199,14 +199,14 @@
 
                                     <ul class="dropdown-menu">
 
-                                        <li><a class="dropdown-item mt-1" href="userPublicProfile.php"><i
+                                        <li><a class="dropdown-item mt-1" href="#"><i
                                                     class="fa-regular fa-user fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;My
                                                 Profile</a></li>
                                         <hr>
-                                        <li><a class="dropdown-item" href="../auth/auth.php"><i
+                                        <li><a class="dropdown-item" href="i"><i
                                                     class="fa-solid fa-house fa-flip fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
                                         </li>
-                                        <li><a class="dropdown-item" href="#"><i
+                                        <li><a class="dropdown-item" href="userCart.php"><i
                                                     class="fa-solid fa-cart-shopping fa-beat-fade fs-5"></i>&nbsp;&nbsp;&nbsp;&nbsp;Cart</a>
                                         </li>
                                         <li><a class="dropdown-item" href="addProduct.php"><i
@@ -258,7 +258,7 @@
                     ?>
                         <div class="">
 
-                            <button type="button" class="btn btn-outline-warning btn-signin justify-content-center" data-bs-toggle="modal" data-bs-target="#loginModal1">Sign In or Sign up</button>
+                            <button type="button" class="btn btn-signin justify-content-center" data-bs-toggle="modal" data-bs-target="#loginModal1">Sign In or Sign up</button>
 
                         </div>
 
@@ -270,9 +270,9 @@
                     ?>
                     </li>
                     <li class="nav-item d-flex justify-content-start align-items-center">
-                        <button class="button2 rounded-pill" type="button">
+                        <button class="button2 rounded-pill" onclick="window.location='index.php'"; type="button">
 
-                            <i class="fa-solid fa-cart-shopping fs-4" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-cart-shopping fs-4" style="cursor: pointer;"><a href="userCart.php"></a></i>
 
                         </button>
                     </li>
@@ -398,8 +398,6 @@
                                         <option value="0">Select Gender</option>
 
                                         <?php
-
-                                        require "./Database/connection.php";
 
                                         $rs = Database::search("SELECT * FROM `gender`");
 

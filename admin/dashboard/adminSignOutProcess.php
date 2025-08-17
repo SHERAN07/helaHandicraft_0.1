@@ -1,0 +1,17 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION["ad"])) {
+
+    $_SESSION["ad"] = null;
+    session_destroy();
+    echo ("success");
+    header( '../auth/SignIn.php');
+} else {
+
+echo("Please login first");
+
+}
+
+?>

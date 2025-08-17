@@ -9,3 +9,5 @@ if (isset($_SESSION["u"])) {
 
     echo ("success");
 }
+
+?>

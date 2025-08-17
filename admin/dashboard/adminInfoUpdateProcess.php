@@ -31,3 +31,4 @@ if (isset($_SESSION["ad"])) {
 
     header('location: ../auth/SignIn.php');
 }
+?>

@@ -623,3 +623,332 @@ function updateAdminImage() {
         }
     };
 }
+
+function adminLogout() {
+
+    // alert("Awaa huththo");
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            if (t == "success") {
+                window.location.reload();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: t,
+                });
+            }
+        }
+    };
+
+    r.open("GET", "./adminSignOutProcess.php", true);
+    r.send();
+
+}
+
+function loadDisPro() {
+
+    var id = document.getElementById("upcity").value;
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            if (t == "invalid city id") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: t,
+                });
+                document.getElementById("updis").value = "";
+                document.getElementById("uppro").value = "";
+            } else if (t == "no valid session") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: t,
+                });
+                document.getElementById("updis").value = "";
+                document.getElementById("uppro").value = "";
+            } else {
+                var obj = JSON.parse(t);
+                document.getElementById("updis").value = obj["d_name"];
+                document.getElementById("uppro").value = obj["p_name"];
+            }
+        }
+    };
+
+    r.open("GET", "process/loadDisProProcess.php?id=" + id, true);
+    r.send();
+
+}
+
+function updateUserImage() {
+
+    var imageInput = document.getElementById("userImageuploader");
+
+    imageInput.onchange = function () {
+        var files = imageInput.files;
+        var fileCount = files.length;
+
+        // Check if exactly 1 image is uploaded
+        if (fileCount === 1) {
+            var selectedFile = files[0];
+            var allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+
+            // Validate file type
+            if (!allowedTypes.includes(selectedFile.type)) {
+                alert('❌ Invalid file type. Please upload a JPEG, JPG, or PNG image.');
+                imageInput.value = ''; // Clear file input
+                return;
+            }
+
+            // Prepare to upload
+            var formData = new FormData();
+            formData.append("img0", selectedFile);
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    if (response === "success") {
+                        alert("✅ Image uploaded successfully.");
+                        window.location.reload();
+                    } else {
+                        alert("⚠ Server response: " + response);
+                    }
+                }
+            };
+
+            xhr.open("POST", "process/userProfileUpdateProcess.php", true);
+            xhr.send(formData);
+
+        } else if (fileCount < 1) {
+            alert("⚠ You must select an image to upload.");
+        } else {
+            alert("⚠ Only 1 image is allowed. You selected " + fileCount + " files.");
+            imageInput.value = ''; // Clear file input
+        }
+    };
+}
+
+function changeUserInfo() {
+
+    // alert ("Hari");
+
+    var ufn = document.getElementById("firstName");
+    var uln = document.getElementById("lastName");
+    var um = document.getElementById("phoneNumber");
+
+    var f = new FormData();
+    f.append("firstName", ufn.value);
+    f.append("lastName", uln.value);
+    f.append("phoneNumber", um.value);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                // window.location.reload();
+                Swal.fire({
+                    title: "Do you want to save the changes?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        Swal.fire("Saved!", "", "success");
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    }
+
+    r.open("POST", "process/userInfoUpdateProcess.php", true);
+    r.send(f);
+
+}
+
+function changeUserAddress() {
+
+    // alert ("Hari");
+
+    var ad1 = document.getElementById("ad1");
+    var ad2 = document.getElementById("ad2");
+    var ucity = document.getElementById("upcity");
+    var udis = document.getElementById("updis");
+    var upro = document.getElementById("uppro");
+    var pt = document.getElementById("postcode");
+
+    var f = new FormData();
+    f.append("ad1", ad1.value);
+    f.append("ad2", ad2.value);
+    f.append("upcity", ucity.value);
+    f.append("updis", udis.value);
+    f.append("uppro", upro.value);
+    f.append("postcode", pt.value);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                // window.location.reload();
+                Swal.fire({
+                    title: "Do you want to save the changes?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        Swal.fire("Saved!", "", "success");
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    }
+
+    r.open("POST", "process/userAddressUpdateProcess.php", true);
+    r.send(f);
+
+}
+
+function userChangePassword() {
+
+    var ucp = document.getElementById("cPassword");
+    var unepw = document.getElementById("nPassword");
+    var ucnepw = document.getElementById("conPassword");
+
+    var f = new FormData();
+    f.append("cPassword", ucp.value);
+    f.append("nPassword", unepw.value);
+    f.append("conPassword", ucnepw.value);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                ucp.value = "";
+                unepw.value = "";
+                ucnepw.value = "";
+                Swal.fire({
+                    icon: 'success',
+                    title: 'success!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    };
+
+    r.open("POST", "process/userChangePasswordProcess.php", true);
+    r.send(f);
+}
+
+function cartitemdelete(c_id) {
+
+    // alert(c_id);
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Item removed from cart!',
+                //     text: t,
+                //     confirmButtonText: 'Okey',
+                //     confirmButtonColor: "#000000",
+                // });
+                window.location.reload();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    };
+    r.open("GET", "process/cartItemDeleteProcess.php?c_id=" + c_id, true);
+    r.send();
+}
+
+function addToCart(p_id) {
+
+    // alert(p_id);
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Item added to cart!',
+                //     text: t,
+                //     confirmButtonText: 'Okey',
+                //     confirmButtonColor: "#000000",
+                // });
+                window.location.reload();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    }
+
+    
+    r.open("GET", "process/addToCartProcess.php?p_id=" + p_id, true);
+    r.send();
+}
