@@ -120,8 +120,8 @@ if (isset($_SESSION["u"])) {
                                             <button type="button" class="btn btn-link p-0 text-danger small mt-1" onclick="cartitemdelete(<?php echo $data['c_id'] ?>);" data-delete>Delete</button>
                                         </div>
                                         <div class="d-flex justify-content-md-end align-items-center gap-2 mt-2 mt-md-0">
-                                            <button type="button" class="btn btn-outline-secondary qty-btn" data-decrease>-</button>
-                                            <input type="text" class="form-control text-center" value="<?php echo $q ?>" inputmode="numeric" pattern="[0-9]*" style="max-width:4.25rem" data-qty>
+                                            <button type="button" class="btn btn-outline-secondary qty-btn" data-decrease onclick="removeFromCart(<?php echo $data['c_id'] ?>);">-</button>
+                                            <input type="text" class="form-control text-center" readonly value="<?php echo $q ?>" inputmode="numeric" pattern="[0-9]*" style="max-width:4.25rem" data-qty>
                                             <button type="button" class="btn btn-outline-secondary qty-btn" data-increase onclick="addToCart(<?php echo $data['p_id'] ?>);">+</button>
                                         </div>
                                         <div class="price-col">

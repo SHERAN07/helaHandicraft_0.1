@@ -153,9 +153,12 @@ if (isset($_SESSION["u"])) {
 
                                         <option value="<?php echo $city_data["id"]; ?>"
                                             <?php
-                                            if ($city_data["id"] == $address["city_id"]) {
+                                            if ($user_address->num_rows > 0) {
+                                                if ($city_data["id"] == $address["city_id"]) {
                                             ?>selected <?php
                                                     }
+                                            }
+                                            
                                                         ?>>
                                             <?php echo $city_data["city_name"]; ?>
                                         </option>

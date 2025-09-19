@@ -25,12 +25,16 @@ if (isset($_SESSION["u"])) {
         echo ("Please select your City");
     } else {
 
-        $rs = Database::iud("UPDATE `user_has_address` SET `line1` = '" . $line1 . "' , `line2` = '" . $line2 . "' , `postal_code` = '" . $postcode . "' , `city_id` = '" . $city . "' WHERE `users_email` = '" . $uemail . "' ");
+        $rs = Database::search("SELECT * FROM `user_has_address` WHERE `users_email` = '" . $uemail . "'");
+
+        if ($rs->num_rows == 0) {
+            Database::iud("INSERT INTO `user_has_address` (`line1`,`line2`,`postal_code`,`city_id`,`users_email`) VALUES ('" . $line1 . "', '" . $line2 . "', '" . $postcode . "', '" . $city . "', '".$uemail."') ");
+        } else {
+            $rs = Database::iud("UPDATE `user_has_address` SET `line1` = '" . $line1 . "' , `line2` = '" . $line2 . "' , `postal_code` = '" . $postcode . "' , `city_id` = '" . $city . "' WHERE `users_email` = '" . $uemail . "' ");
+        }
 
         echo ("success");
-
     }
 } else {
     header('Location: ../index.php');
-
 }

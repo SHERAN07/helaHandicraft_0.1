@@ -43,29 +43,29 @@ require "../../Database/connection.php";
 
                         <div class="row">
 
-                            <div class="d-flex justify-content-center align-items-center card col-1 mx-2">
+                            <div class="d-flex justify-content-center align-items-center card col-2 mx-2" style="min-height: 200px;">
                                 <a href=""><i class="bi bi-plus-circle" style="font-size: 4rem; color: black"></i></a>
-                                <label class="mb-2" style="font-size: 0.9rem;">Main&nbsp;Image</label>
+                                <label class="mb-2" style="font-size: 0.9rem;">Main Image</label>
                             </div>
 
-                            <div class="d-flex justify-content-center align-items-center card col-1 mx-2">
+                            <div class="d-flex justify-content-center align-items-center card col-2 mx-2">
                                 <a href=""><i class="bi bi-plus-circle" style="font-size: 4rem; color: black"></i></a>
-                                <label class="mb-2" style="font-size: 0.9rem;">Image&nbsp;01</label>
+                                <label class="mb-2" style="font-size: 0.9rem;">Image 01</label>
                             </div>
 
-                            <div class="d-flex justify-content-center align-items-center card col-1 mx-2">
+                            <div class="d-flex justify-content-center align-items-center card col-2 mx-2">
                                 <a href=""><i class="bi bi-plus-circle" style="font-size: 4rem; color: black"></i></a>
-                                <label class="mb-2" style="font-size: 0.9rem;">Image&nbsp;02</label>
+                                <label class="mb-2" style="font-size: 0.9rem;">Image 02</label>
                             </div>
 
-                            <div class="d-flex justify-content-center align-items-center card col-1 mx-2">
+                            <div class="d-flex justify-content-center align-items-center card col-2 mx-2">
                                 <a href=""><i class="bi bi-plus-circle" style="font-size: 4rem; color: black"></i></a>
-                                <label class="mb-2" style="font-size: 0.9rem;">Image&nbsp;03</label>
+                                <label class="mb-2" style="font-size: 0.9rem;">Image 03</label>
                             </div>
 
-                            <div class="d-flex justify-content-center align-items-center card col-1 mx-2">
+                            <div class="d-flex justify-content-center align-items-center card col-2 mx-2">
                                 <a href=""><i class="bi bi-plus-circle" style="font-size: 4rem; color: black"></i></a>
-                                <label class="mb-2" style="font-size: 0.9rem;">Image&nbsp;04</label>
+                                <label class="mb-2" style="font-size: 0.9rem;">Image 04</label>
                             </div>
 
                         </div>
@@ -103,26 +103,8 @@ require "../../Database/connection.php";
 
                                 </select>
                             </div>
+                            
                             <div class="mb-3 mx-2 col-2">
-                                <label for="color" class="form-label">Color</label>
-                                <select class="form-select" id="productColor">
-                                    <option selected>Select color</option>
-                                    <?php
-
-                                    $rs = Database::search("SELECT * FROM `color`");
-                                    $num = $rs->num_rows;
-                                    for ($x = 0; $x < $num; $x++) {
-                                        $data = $rs->fetch_assoc();
-                                    ?>
-
-                                        <option value="<?php echo $data["id"] ?>"><?php echo $data["name"] ?></option>
-
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="mb-3 col-2">
                                 <label for="material" class="form-label">Material</label>
                                 <select class="form-select" id="productMaterial">
                                     <option selected>Select material</option>
@@ -141,6 +123,27 @@ require "../../Database/connection.php";
                                     ?>
                                 </select>
                             </div>
+
+                            <div class="mb-3 col-2">
+                                <label for="color" class="form-label">Color</label>
+                                <select class="form-select" id="productColor">
+                                    <option selected>Select color</option>
+                                    <?php
+
+                                    $rs = Database::search("SELECT * FROM `color`");
+                                    $num = $rs->num_rows;
+                                    for ($x = 0; $x < $num; $x++) {
+                                        $data = $rs->fetch_assoc();
+                                    ?>
+
+                                        <option value="<?php echo $data["id"] ?>"><?php echo $data["name"] ?></option>
+
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
                             <div class="mb-3 mx-2 col-2">
                                 <label for="size" class="form-label">Size</label>
                                 <select class="form-select" id="productSize">
@@ -226,10 +229,10 @@ require "../../Database/connection.php";
                             </div>
                         </div>
 
-                        <div class="d-flex col-12">]
-                            <div class="mb-3 col-3">
-                                <label for="" class="form-label">Product Status</label>
-                                <div class="mb-3 col-3">
+                        <div class="d-flex col-12">
+                            
+                            
+                                <div class="mb-3">
                                     <label for="deliveryCost" class="form-label">Delivery Cost</label>
                                     <div class="input-group">
                                         <label for="" class="input-box input-group-text">LKR</label>
@@ -238,7 +241,7 @@ require "../../Database/connection.php";
                                     </div>
                                 </div>
 
-                            </div>
+                            
 
                         </div>
 

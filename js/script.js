@@ -952,3 +952,28 @@ function addToCart(p_id) {
     r.open("GET", "process/addToCartProcess.php?p_id=" + p_id, true);
     r.send();
 }
+
+function removeFromCart(c_id) {
+
+    // alert(c_id);
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            if (t == "success") {
+                window.location.reload();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: t,
+                    confirmButtonText: 'Okey',
+                    confirmButtonColor: "#000000",
+                });
+            }
+        }
+    }
+    r.open("GET", "process/removeFromCartProcess.php?c_id=" + c_id, true);
+    r.send();
+    
+}
