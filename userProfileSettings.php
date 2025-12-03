@@ -100,8 +100,8 @@ if (isset($_SESSION["u"])) {
                             <button type="submit" class="btn btn-primary my-3" onclick="changeUserInfo();">Save Changes</button>
                         </div>
                     </div>
-
-                    <div class="card mb-4">
+                    <!-- Address Section -->
+                    <div class="card mb-4" id="addressSection">
                         <div class="card-header">
                             <h5 class="text-center my-2">Address Information</h5>
                         </div>
@@ -157,8 +157,8 @@ if (isset($_SESSION["u"])) {
                                                 if ($city_data["id"] == $address["city_id"]) {
                                             ?>selected <?php
                                                     }
-                                            }
-                                            
+                                                }
+
                                                         ?>>
                                             <?php echo $city_data["city_name"]; ?>
                                         </option>
@@ -186,6 +186,7 @@ if (isset($_SESSION["u"])) {
                             <button type="submit" class="btn btn-primary my-3" onclick="changeUserAddress();">Save Changes</button>
                         </div>
                     </div>
+                    <!-- Address Section -->
 
                     <!-- Change Password Section -->
                     <div class="card mb-4">
@@ -225,6 +226,7 @@ if (isset($_SESSION["u"])) {
                             <button type="submit" class="btn btn-primary">Save Settings</button>
                         </div>
                     </div> -->
+                    <!-- Change Password Section -->
                     <!-- Notification Settings Section -->
                     <div class="card mb-4">
                         <div class="card-header">
@@ -246,8 +248,16 @@ if (isset($_SESSION["u"])) {
                 </div>
             </div>
         </div>
+        <!-- Notification Settings Section -->
 
+        <?php include "footer.php"; ?>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                document.body.classList.remove("fade-out");
+            });
+        </script>
+        <!-- Bootstrap JS and dependencies -->
         <script src="js/sweetalert.js"></script>
         <script src="js/script.js"></script>
         <script src="js/bootstrap.bundle.js"></script>

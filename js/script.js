@@ -948,7 +948,7 @@ function addToCart(p_id) {
         }
     }
 
-    
+
     r.open("GET", "process/addToCartProcess.php?p_id=" + p_id, true);
     r.send();
 }
@@ -975,5 +975,66 @@ function removeFromCart(c_id) {
     }
     r.open("GET", "process/removeFromCartProcess.php?c_id=" + c_id, true);
     r.send();
-    
+
+}
+
+function goToEditProfile() {
+    // alert("ok");
+    window.location = "userProfileSettings.php";
+}
+
+/* address section highlight and scroll */
+function goToAddressSettings() {
+    // Redirect to profile settings page and focus address section
+    window.location.href = "userProfileSettings.php?section=address";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get("section");
+
+    if (section === "address") {
+        const target = document.getElementById("addressSection");
+
+        if (target) {
+            // Smooth scroll to the address section
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+
+            // Delay before highlight
+            setTimeout(() => {
+                target.classList.add("highlight-glow");
+            }, 600);
+
+            // Remove highlight after 2s
+            setTimeout(() => {
+                target.classList.remove("highlight-glow");
+            }, 2600);
+        }
+    }
+});
+/* address section highlight and scroll */
+
+function goToAddressSettings() {
+  // Add fade-out effect to body
+  document.body.classList.add("fade-out");
+
+  // Wait for animation to finish, then redirect
+  setTimeout(() => {
+    window.location.href = "userProfileSettings.php?section=address";
+  }, 400); // 0.4s delay matches the CSS transition time
+}
+
+function goToAddressSettings() {
+  fadeRedirect("userProfileSettings.php?section=address");
+}
+
+function goToEditProfile() {
+  fadeRedirect("userProfileSettings.php?section=edit");
+}
+
+function fadeRedirect(url) {
+  document.body.classList.add("fade-out");
+  setTimeout(() => {
+    window.location.href = url;
+  }, 400);
 }

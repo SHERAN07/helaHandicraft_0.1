@@ -137,6 +137,12 @@
 body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', sans-serif;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+body.fade-out {
+  opacity: 0;
 }
 
 .login-design {
@@ -147,3 +153,25 @@ body {
 .login {
     min-width: 30rem;
 }
+
+.side1 {
+
+    position: fixed;
+    width: 229.5px;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    border-right: 1px solid #eee;
+    z-index: 1000;
+}
+
+/* header */
+
+/* Address Section */
+.highlight-glow {
+    box-shadow: 0 0 20px 4px rgba(0, 123, 255, 0.8);
+    transform: scale(1.01);
+    transition: all 2s ease-out;
+}
+
+/* Address Section */

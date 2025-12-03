@@ -184,6 +184,8 @@ if (isset($_SESSION["u"])) {
         <script src="js/sweetalert.js"></script>
         <script src="js/script.js"></script>
         <script src="js/bootstrap.bundle.js"></script>
+
+        <?php include "footer.php"; ?>
     </body>
 
     </html>

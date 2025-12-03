@@ -1,5 +1,7 @@
 <?php
 
+use function PHPSTORM_META\elementType;
+
 class Database{
 
     public static $connection;

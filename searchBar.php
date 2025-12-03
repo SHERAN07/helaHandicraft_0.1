@@ -12,9 +12,13 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
         </div>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Search item ..." aria-label="Username" aria-describedby="basic-addon1">
 
         <button class="btn btn-primary col-2" type="submit">Search</button>
 
-        <a href="advancedSearch.php" class="col-2">Advanced Search</a>
+        <!-- Advanced Search link -->
+        <div class="col-6 col-md-2 text-center">
+            <a href="advancedSearch.php" class="btn btn-outline-dark w-100">Advanced Search</a>
+        </div>
     </div>
+</div>
