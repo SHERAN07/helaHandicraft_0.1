@@ -19,7 +19,7 @@ if (isset($_SESSION["u"]) && isset($_GET["p_id"])) {
 
         $s_qty = $data["p_qty"];
 
-        $a_qty = $data["mb_qty"];
+        $a_qty = $data["mb_qty"]; // maximum buy quantity
 
         if ($new_qty <= $s_qty) {
 
