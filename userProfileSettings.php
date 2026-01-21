@@ -101,7 +101,7 @@ if (isset($_SESSION["u"])) {
                         </div>
                     </div>
                     <!-- Address Section -->
-                    <div class="card mb-4" id="addressSection">
+                    <div class="card mb-4 address-box" id="addressSection">
                         <div class="card-header">
                             <h5 class="text-center my-2">Address Information</h5>
                         </div>

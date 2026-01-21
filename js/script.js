@@ -978,17 +978,16 @@ function removeFromCart(c_id) {
 
 }
 
-function goToEditProfile() {
-    // alert("ok");
-    window.location = "userProfileSettings.php";
+function goToAddressSettings() {
+    fadeRedirect("userProfileSettings.php?section=address");
 }
+
+function goToEditProfile() {
+    fadeRedirect("userProfileSettings.php?section=edit");
+}
+
 
 /* address section highlight and scroll */
-function goToAddressSettings() {
-    // Redirect to profile settings page and focus address section
-    window.location.href = "userProfileSettings.php?section=address";
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const section = urlParams.get("section");
@@ -1014,27 +1013,42 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 /* address section highlight and scroll */
 
-function goToAddressSettings() {
-  // Add fade-out effect to body
-  document.body.classList.add("fade-out");
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function (e) {
 
-  // Wait for animation to finish, then redirect
-  setTimeout(() => {
-    window.location.href = "userProfileSettings.php?section=address";
-  }, 400); // 0.4s delay matches the CSS transition time
-}
+            if (
+                link.target === "_blank" ||
+                link.href.includes("#") ||
+                link.href.startsWith("javascript") ||
+                link.hasAttribute("data-no-fade")
+            ) return;
 
-function goToAddressSettings() {
-  fadeRedirect("userProfileSettings.php?section=address");
-}
+            e.preventDefault();
 
-function goToEditProfile() {
-  fadeRedirect("userProfileSettings.php?section=edit");
-}
+            document.body.classList.remove("page-fade-in");
+            document.body.classList.add("page-fade-out");
+
+            setTimeout(() => {
+                window.location.href = link.href;
+            }, 400);
+        });
+    });
+});
+
+
 
 function fadeRedirect(url) {
-  document.body.classList.add("fade-out");
-  setTimeout(() => {
-    window.location.href = url;
-  }, 400);
+    document.body.classList.remove("page-fade-in");
+    document.body.classList.add("page-fade-out");
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 400);
 }
+
+window.addEventListener("pageshow", function () {
+    document.body.classList.remove("page-fade-out");
+    document.body.classList.add("page-fade-in");
+});
+

@@ -132,18 +132,34 @@
     margin-top: 10px;
 }
 
-/* header */
 
+/* body */
 body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', sans-serif;
     opacity: 1;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease-in-out;
 }
 
 body.fade-out {
   opacity: 0;
 }
+
+.page-fade-out {
+  opacity: 0;
+}
+
+.page-fade-in {
+  opacity: 1;
+}
+
+.highlight-glow {
+    box-shadow: 0 0 20px 4px rgba(0, 123, 255, 0.8);
+    transform: scale(1.01);
+    transition: all 2s ease-out;
+}
+
+/* body */
 
 .login-design {
     max-width: 26rem;
@@ -175,3 +191,11 @@ body.fade-out {
 }
 
 /* Address Section */
+
+/* Page Transition Effects */
+body {
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+
